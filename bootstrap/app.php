@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Middleware\CheckAdmin;
+use App\Http\Middleware\CheckUser;
+use App\Http\Middleware\CheckVendor;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -11,7 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias(
+            [
+                'superadmin' => CheckAdmin::class,
+                'vendor' => CheckVendor::class,
+                'user' => CheckUser::class,
+            ]
+        );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

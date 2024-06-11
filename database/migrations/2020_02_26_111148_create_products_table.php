@@ -19,6 +19,9 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->bigInteger('subcategory_id')->unsigned()->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            //vendor id
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('brand_id')->nullable();
             $table->string('product_name');
             $table->string('product_code');
@@ -35,9 +38,6 @@ class CreateProductsTable extends Migration
             $table->integer('mid_slider')->nullable();
             $table->integer('hot_new')->nullable();
             $table->integer('trend')->nullable();
-            $table->string('image_one')->nullable();
-            $table->string('image_two')->nullable();
-            $table->string('image_three')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
         });
