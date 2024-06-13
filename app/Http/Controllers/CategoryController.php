@@ -7,20 +7,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $categories = Category::with('subcategories')->paginate(config('global.paginate'));
+        return view('categories.index', compact('categories'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view ("categories.create");
     }
 
     /**
@@ -28,15 +22,35 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //https://laravel.com/docs/11.x/validation#available-validation-rules
+        
+         $validated = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+            'slug'=>'required|unique:categories|max:255',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+        // dd($request->all());
+
+        // $image = $request->file('image');
+        // $image_name = time().'_'.$image->getClientOriginalName();
+        // $file = $image->move(public_path('assets/images/category'), $image_name);
+        // $imagePath = $request->file('image')->store('category', 'public');
+        // dd($image_name);
+        $data = [
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'status' => $request->status,
+        ];
+        // Category::create($request->all());
+        Category::create($data);
+        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Category $category)
     {
-        //
+        return view('categories.show', ['category' => $category]);
     }
 
     /**
@@ -60,6 +74,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+
+    }
+    function categorysubcategory(){
+        //return in json
+        $total = Category::count();
+        $categories = Category::with('subcategories')->skip(0)->take(2)->get();
+        return response()->json(['categories' => $categories, 'total' => $total]);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthCheckController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
@@ -8,10 +9,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.index');
 })->name('home');
-
-
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//admin route group
+//admin route gro
 Route::middleware(['superadmin'])->group(function () {
     Route::get('/admindashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');    
 });
@@ -31,6 +28,10 @@ Route::middleware(['superadmin'])->group(function () {
 Route::middleware(['vendor'])->group(function () {
     Route::get('/vendordashboard', [VendorController::class, 'dashboard'])->name('vendor.dashboard');    
 });
+
+// category route start here
+Route::resource('categories', CategoryController::class);
+// category route end here
 
 Route::get('/home', [AuthCheckController::class, 'check']);
 // Route::get('/home', [AdminController::class, 'show']);
