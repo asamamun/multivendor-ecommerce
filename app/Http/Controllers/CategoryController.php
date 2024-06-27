@@ -12,7 +12,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+    
+        $categories = Category::with('subcategories')->paginate(config('global.paginate'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -20,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view ("categories.create");
     }
 
     /**
@@ -28,21 +30,36 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:categories|max:255',
+            'slug' => 'required|unique:categories|max:255',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+    
+        $data = [
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'status' => $request->status,
+        ];
+        Category::create($data);
+    
+        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(category $category)
     {
-        //
+        return view('categories.show', ['category' => $category]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(category $category)
     {
         //
     }
@@ -50,7 +67,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, category $category)
     {
         //
     }
@@ -58,8 +75,15 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(category $category)
     {
         //
+    }
+
+    function categorysubcategory(){
+        //return in json
+        $total = Category::count();
+        $categories = Category::with('subcategories')->skip(0)->take(2)->get();
+        return response()->json(['categories' => $categories, 'total' => $total]);
     }
 }

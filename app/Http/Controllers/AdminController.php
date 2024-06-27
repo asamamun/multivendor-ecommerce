@@ -5,6 +5,6 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller{
     public function dashboard(){
-        return view('admin.index');
+        return view('admin.dashboard');
     }
 }

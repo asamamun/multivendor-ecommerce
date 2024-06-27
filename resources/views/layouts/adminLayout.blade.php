@@ -44,7 +44,6 @@
     
 </head>
 <body class="">
-
     <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light border-bottom py-0 fixed-top bg-white">
       <div class="container-fluid">
