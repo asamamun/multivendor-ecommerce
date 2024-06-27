@@ -1,5 +1,4 @@
 @extends('layouts.vendorLayout', ['title' => 'Single Category'])
-
 @section('content')
     <div class="mt-4">
         <a href="{{ url()->previous() }}" class="btn btn-link">

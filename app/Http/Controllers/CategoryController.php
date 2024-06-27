@@ -7,22 +7,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-    
         $categories = Category::with('subcategories')->paginate(config('global.paginate'));
         return view('categories.index', compact('categories'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view ("categories.create");
+        return view("categories.create");
     }
 
     /**
@@ -36,7 +28,7 @@ class CategoryController extends Controller
             'description' => 'required',
             'status' => 'required',
         ]);
-    
+
         $data = [
             'name' => $request->name,
             'slug' => $request->slug,
@@ -44,7 +36,7 @@ class CategoryController extends Controller
             'status' => $request->status,
         ];
         Category::create($data);
-    
+
         return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
@@ -77,10 +69,9 @@ class CategoryController extends Controller
      */
     public function destroy(category $category)
     {
-        //
     }
-
-    function categorysubcategory(){
+    public function categorysubcategory()
+    {
         //return in json
         $total = Category::count();
         $categories = Category::with('subcategories')->skip(0)->take(2)->get();
