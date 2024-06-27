@@ -1,11 +1,6 @@
 <?php
 
 namespace App\Models;
-
-// use App\Model\Admin\Product;
-// use App\Model\Admin\subcategory;
-
-use App\Model\Admin\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,10 +20,10 @@ class category extends Model
     }
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(product::class);
     }
     public function Images()
     {
-        return $this->hasManyThrough(Image::class, Product::class);
+        return $this->hasManyThrough(image::class, product::class);
     }
 }

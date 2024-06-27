@@ -17,14 +17,9 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('name');
             $table->string('slug');
-<<<<<<< HEAD:database/migrations/2019_11_06_075821_create_subcategories_table.php
          
             $table->boolean('status')->default(true);
             $table->softDeletes();
-=======
-            $table->string('status');
-            $table->string('deleted_at');
->>>>>>> 2178b20738ad0cab03d2d2d08311d4cf598ffd97:database/migrations/2020_02_22_195135_create_subcategories_table.php
             $table->timestamps();
         });
     }

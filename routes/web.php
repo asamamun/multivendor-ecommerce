@@ -1,8 +1,10 @@
 <?php
 use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
-use App\Http\Controllers\AuthCheckController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.index');
 })->name('home');
-
-
+//first loading page end here
 
 
 // every dashboard start here
@@ -37,35 +38,29 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//admin route gro
+//admin route group
 Route::middleware(['superadmin'])->group(function () {
     Route::get('/admindashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard'); 
-    // Route::resource('categories', CategoryController::class)->names('category');
-    Route::resource('categories', CategoryController::class);
-    Route::resource('subcategories', SubcategoryController::class);
-      
+    Route::resource('categories', CategoryController::class)->names('category');
+    Route::resource('subcategories', SubcategoryController::class)->names('subcategory');
+    Route::resource('/products', ProductController::class)->names('product');      
 });
 
 
-//vendor route group
+//vendor route starts here
 Route::middleware(['vendor'])->group(function () {
-    Route::get('/vendordashboard', [VendorController::class, 'dashboard'])->name('vendor.dashboard');    
+    Route::get('/vendordashboard', [VendorController::class, 'display'])->name('vendor.dashboard');  
+    Route::resource('/products', ProductController::class)->names('product');
+    // Route::get('/users', [UserController::class, 'index'])->name('users'); 
 });
-
-Route::get('/home', [AuthCheckController::class, 'check']);
-
+// vendor route ends here
 
 
 
-
-
-
-
-
-
-
-
-
+Route::get("/getsubcat/{id}",[SubcategoryController::class, 'getSubcat']);
+// Route::resource('products',ProductController::class)->names('product'); 
+Route::resource('products',ProductController::class); 
+Route::resource('subcategories', SubcategoryController::class);
 
 
 

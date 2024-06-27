@@ -11,7 +11,7 @@
                     <rect fill="currentColor" x="3" y="14" width="7" height="7"></rect>
                 </svg>
             </span>
-            <span class="menu-link">Dashboard<span class="badge bg-success-faded text-success pb-1 ms-2 align-middle rounded-pill">beta</span></span>
+            <span class="menu-link">Dashboard<span class="badge bg-success-faded text-success pb-1 ms-2 align-middle rounded-pill">vendor</span></span>
         </a>
     </li>
     <li class="menu-section mt-4">Manage</li>

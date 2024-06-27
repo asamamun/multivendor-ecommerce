@@ -1,4 +1,4 @@
-@extends('layouts.vendorLayout', ['title' => 'Add New Product'])
+@extends('layouts.adminLayout1', ['title' => 'Add New Product'])
 @section('content')
 <div class="d-flex justify-content-between">    
     {{-- <a title="back to index" style="font-size: 2em" href="{{route("products.index")}}"><i class="bi bi-backspace"></i></a> --}}

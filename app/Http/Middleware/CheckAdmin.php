@@ -17,7 +17,6 @@ class CheckAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            // Check if the authenticated user has the 'admin' role
             if (Auth::user()->roles === 'admin') {
                 return $next($request);
             }

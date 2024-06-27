@@ -347,7 +347,7 @@
                                 </span>
                                 <span class="menu-link">
                                     Dashboard
-                                    <span class="badge bg-success-faded text-success pb-1 ms-2 align-middle rounded-pill">beta</span>
+                                    <span class="badge bg-success-faded text-success pb-1 ms-2 align-middle rounded-pill">admin</span>
                                 </span></a></li>
                         <!-- / Dashboard Menu Section-->
     
@@ -365,7 +365,7 @@
                                     class="menu-link">Category</span></a>
                             <div class="collapse" id="collapseCatItemPages">
                                 <ul class="submenu">
-                                    <li><a href="./charts.html">All</a></li>
+                                    <li><a href="{{route('categories.index')}}">All</a></li>
                                     <li><a href="{{route('categories.create')}}">Add</a></li>                             
                                     
                                 </ul>
@@ -381,8 +381,8 @@
                                     class="menu-link">Sub Category</span></a>
                             <div class="collapse" id="collapseScItemPages">
                                 <ul class="submenu">
-                                    <li><a href="./charts.html">All</a></li>
-                                    <li><a href="./user-listing.html">Add</a></li>                             
+                                    <li><a href="{{route('subcategories.index')}}">All</a></li>
+                                    <li><a href="{{route('subcategories.create')}}">Add</a></li>                             
                                     
                                 </ul>
                             </div>
@@ -398,8 +398,8 @@
                                     class="menu-link">Product</span></a>
                             <div class="collapse" id="collapseProductItemPages">
                                 <ul class="submenu">
-                                    <li><a href="./charts.html">All</a></li>
-                                    <li><a href="./user-listing.html">Add</a></li>                             
+                                    <li><a href="{{route('products.index')}}">All</a></li>
+                                    <li><a href="{{route('products.create')}}">Add</a></li>                             
                                     
                                 </ul>
                             </div>

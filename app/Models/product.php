@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,23 +34,23 @@ class product extends Model
         'status',
     ];
 
-    public function images(): HasMany
+    public function Images(): HasMany
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(image::class);
     }
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(category::class);
     }
     public function subcategory(): BelongsTo
     {
-        return $this->belongsTo(SubCategory::class);
+        return $this->belongsTo(subcategory::class);
     }
     /**
      * Get all of the post's comments.
      */
     public function comments(): MorphMany
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->morphMany(comment::class, 'commentable');
     }
 }

@@ -17,9 +17,9 @@
               Dropdown
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ URL('categories') }}">Categories</a></li>
-              <li><a class="dropdown-item" href="{{ URL('subcategories') }}">Sub Categories</a></li>
-              <li><a class="dropdown-item" href="{{ URL('products') }}">Products</a></li>
+              <li><a class="dropdown-item" href="{{ URL(route('categories.index')) }}">Categories</a></li>
+              <li><a class="dropdown-item" href="{{ URL(route('subcategories.index')) }}">Sub Categories</a></li>
+              <li><a class="dropdown-item" href="{{ URL(route('products.index')) }}">Products</a></li>
               <li><a class="dropdown-item" href="{{URL('collection')}}">Collection</a></li>
             </ul>
           </li>

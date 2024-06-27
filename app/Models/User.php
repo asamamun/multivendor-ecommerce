@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class User extends Authenticatable
+class user extends Authenticatable
 {
     use HasFactory, Notifiable;
     protected $fillable = [
@@ -62,7 +62,6 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn (string $value) => strtoupper($value),
-            // set: fn (string $value) => password_hash($value, PASSWORD_DEFAULT),
             set: fn (string $value) => strtolower($value),
         );
     }

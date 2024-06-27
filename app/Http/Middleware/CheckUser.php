@@ -17,7 +17,6 @@ class CheckUser
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            // Check if the authenticated user has the 'admin' role
             if (Auth::user()->roles === 'user') {
                 return $next($request);
             }
@@ -26,7 +25,6 @@ class CheckUser
             }
         }
         else {
-            //redirect to login page
             return redirect()->route('login');
             
         }  

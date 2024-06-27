@@ -1,4 +1,4 @@
-@extends('layouts.vendorLayout', ['title' => 'Subcategories Management'])
+@extends('layouts.adminLayout1', ['title' => 'Subcategories Management'])
 
 @section('content')
 <h1 class="text-center">Subcategories Page</h1>

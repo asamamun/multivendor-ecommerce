@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Image;
-use App\Models\SubCategory;
+use App\Models\category;
+use App\Models\comment;
+use App\Models\image;
+use App\Models\subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = product::all();
         // with(['images','comments.user'])
         // ->get();
         // ->paginate(config('global.paginate'));
@@ -36,7 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('name', 'id');
+        $categories = category::pluck('name', 'id');
         $subcategories = [];
         $product = null;
         return view('products.create', compact('categories', 'subcategories', 'product'));
@@ -48,7 +48,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         // dd($request->all());
-        $product = Product::create($request->all());
+        $product = product::create($request->all());
         // dd($product);
         if ($product) {
             if ($request->hasFile('image')) {
@@ -64,7 +64,7 @@ class ProductController extends Controller
                     //watermark end
                 }
                 // return redirect()->route("products.create")->with("success", "Product created successfully. ID is " . $product->id);
-                return redirect()->route("products.show")->with("success", "Product created successfully. ID is " . $product->id);
+                return redirect()->route("products.show", $product)->with("success", "Product created successfully. ID is " . $product->id);
             } 
             else {
                 echo "image not available";
@@ -116,7 +116,7 @@ class ProductController extends Controller
 
     public function deleteImage($id){
         //delete from table
-        $image = Image::find($id);
+        $image = image::find($id);
         
         //delete from storage
         Storage::delete($image->name);

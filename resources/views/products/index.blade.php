@@ -1,4 +1,4 @@
-@extends('layouts.vendorLayout', ['title' => 'Products Management'])
+@extends('layouts.adminLayout1', ['title' => 'Products Management'])
 
 @section('content')
 <a class="btn btn-primary p-2 text-bold mt-2" style="width: 160px" href="{{route('products.create')}}">Create New Product</a>
@@ -8,7 +8,6 @@
         <thead>
             <tr>
                 <th>Serial</th>
-                {{-- <th>Category/Subcategory (names)</th> --}}
                 <th><span class="text-danger">Category</span>/<span class="mx-1">Subcategory(names)</span></th>
                 <th>Product Name</th>
                 <th>Product Code</th>
@@ -63,18 +62,6 @@
                     </a>
                 </td>   
             </tr>
-            {{-- <tr>
-                <td colspan="12">
-                    <i>Comments:</i>
-                    <ul>
-                        @forelse ($product->comments as $comm)
-                        <li>{{$comm->comment}} by {{$comm->user->name}} ({{$comm->user->email}})</li> 
-                        @empty
-                            <li>no comments</li>
-                        @endforelse
-                    </ul>
-                </td>
-            </tr> --}}
             @endforeach
         </tbody>
     </table>
